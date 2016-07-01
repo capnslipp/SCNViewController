@@ -7,14 +7,14 @@ import SceneKit
 
 
 
-class SCNViewController : UIViewController
+public class SCNViewController : UIViewController
 {
 	enum Error : Swift.Error {
 		case nibStoryboardViewIsNotAnSCNView
 	}
 	
 	
-    required init(nibName nibNameOrNil:String?, bundle nibBundleOrNil:Bundle?, viewFrame:CGRect?, viewOptions:[String:AnyObject]? = [:])
+    public required init(nibName nibNameOrNil:String?, bundle nibBundleOrNil:Bundle?, viewFrame:CGRect?, viewOptions:[String:AnyObject]? = [:])
 	{
 		if nibNameOrNil == nil {
 			_initViewFrame = viewFrame
@@ -26,15 +26,15 @@ class SCNViewController : UIViewController
 		
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
-	convenience init(viewFrame:CGRect?, viewOptions:[String:AnyObject]? = [:]) {
+	public convenience init(viewFrame:CGRect?, viewOptions:[String:AnyObject]? = [:]) {
 		self.init(nibName: nil, bundle: nil, viewFrame: viewFrame, viewOptions: viewOptions)
 	}
 	
-    convenience override init(nibName nibNameOrNil:String?, bundle nibBundleOrNil:Bundle?) {
+    public convenience override init(nibName nibNameOrNil:String?, bundle nibBundleOrNil:Bundle?) {
 		self.init(nibName: nibNameOrNil, bundle: nibBundleOrNil, viewFrame: nil, viewOptions: nil)
 	}
 	
-	required init?(coder aDecoder:NSCoder) {
+	public required init?(coder aDecoder:NSCoder) {
 		_initViewFrame = nil
 		_initViewOptions = nil
 		
@@ -53,15 +53,15 @@ class SCNViewController : UIViewController
 	}
 	
 	
-	var scnView:SCNView {
+	public var scnView:SCNView {
 		return self.view as! SCNView
 	}
-	var scene:SCNScene? {
+	public var scene:SCNScene? {
 		return self.scnView.scene
 	}
 	
 	
-	override func loadView()
+	public override func loadView()
 	{
 		guard self.nibName == nil && self.storyboard == nil else {
 			super.loadView()
@@ -72,18 +72,18 @@ class SCNViewController : UIViewController
 		self.view = SCNView(frame: self.initViewFrame, options: self.initViewOptions)
 	}
 	
-	override func viewDidLoad()
+	public override func viewDidLoad()
 	{
 		self.scnView.scene = SCNScene()
 		
 		super.viewDidLoad()
 	}
 	
-	override var shouldAutorotate:Bool { return true }
+	public override var shouldAutorotate:Bool { return true }
 	
-	override var prefersStatusBarHidden:Bool { return true }
+	public override var prefersStatusBarHidden:Bool { return true }
 	
-	override var supportedInterfaceOrientations:UIInterfaceOrientationMask {
+	public override var supportedInterfaceOrientations:UIInterfaceOrientationMask {
 		switch UIDevice.current.userInterfaceIdiom {
 			case .phone:
 				return .allButUpsideDown
@@ -93,7 +93,7 @@ class SCNViewController : UIViewController
 	}
 	
 	/// Release any cached data, images, etc that aren't in use.
-	override func didReceiveMemoryWarning() {
+	public override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
 
