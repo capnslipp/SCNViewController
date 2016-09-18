@@ -14,9 +14,15 @@ public class SCNViewController : UIViewController
 	}
 	
 	
-    public required init(nibName nibNameOrNil:String?, bundle nibBundleOrNil:Bundle?, viewFrame:CGRect?, viewOptions:[String:AnyObject]? = [:])
+	/// Unfortunately, SCNView's API hasn't yet been fully updated for Swift, so if you use `viewOptions`s they need to be specified similar to the following:
+	///		viewOptions: [
+	///			SCNView.Option.preferredRenderingAPI.rawValue: NSNumber(value: SCNRenderingAPI.metal.rawValue),
+	///			SCNView.Option.preferredDevice.rawValue: MTLCreateSystemDefaultDevice()!,
+	///			SCNView.Option.preferLowPowerDevice.rawValue: NSNumber(value: true)
+	///		]
+	public required init(nibName:String?, bundle nibBundle:Bundle?=nil, viewFrame:CGRect?, viewOptions:[String:Any]?=[:])
 	{
-		if nibNameOrNil == nil {
+		if nibName == nil {
 			_initViewFrame = viewFrame
 			_initViewOptions = viewOptions
 		} else {
@@ -24,14 +30,14 @@ public class SCNViewController : UIViewController
 			_initViewOptions = nil
 		}
 		
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+		super.init(nibName: nibName, bundle: nibBundle)
 	}
-	public convenience init(viewFrame:CGRect?, viewOptions:[String:AnyObject]? = [:]) {
+	public convenience init(viewFrame:CGRect?, viewOptions:[String:Any]? = [:]) {
 		self.init(nibName: nil, bundle: nil, viewFrame: viewFrame, viewOptions: viewOptions)
 	}
 	
-    public convenience override init(nibName nibNameOrNil:String?, bundle nibBundleOrNil:Bundle?) {
-		self.init(nibName: nibNameOrNil, bundle: nibBundleOrNil, viewFrame: nil, viewOptions: nil)
+	public convenience override init(nibName:String?, bundle nibBundle:Bundle?=nil) {
+		self.init(nibName: nibName, bundle: nibBundle, viewFrame: nil, viewOptions: nil)
 	}
 	
 	public required init?(coder aDecoder:NSCoder) {
@@ -47,8 +53,8 @@ public class SCNViewController : UIViewController
 		return _initViewFrame ?? CGRect.null
 	}
 	
-	private let _initViewOptions:[String:AnyObject]?
-	private var initViewOptions:[String:AnyObject]? {
+	private let _initViewOptions:[String:Any]?
+	private var initViewOptions:[String:Any]? {
 		return _initViewOptions
 	}
 	
@@ -96,5 +102,4 @@ public class SCNViewController : UIViewController
 	public override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
-
 }
