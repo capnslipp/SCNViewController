@@ -4,6 +4,7 @@
 
 import UIKit
 import SceneKit
+import AVFoundation // for: AVAudioEngine
 
 
 
@@ -75,7 +76,13 @@ public class SCNViewController : UIViewController
 			return
 		}
 		
-		self.view = SCNView(frame: self.initViewFrame, options: self.initViewOptions)
+		self.view = {
+			let view = SCNView(frame: self.initViewFrame, options: self.initViewOptions)
+			if #available(iOS 9.0, tvOS 9.0, *) {
+				_ = view.audioEngine
+			}
+			return view
+		}()
 	}
 	
 	public override func viewDidLoad()
