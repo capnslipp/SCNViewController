@@ -24,10 +24,10 @@ public class SCNViewController : UIViewController
 	public required init(nibName:String?, bundle nibBundle:Bundle?=nil, viewFrame:CGRect?, viewOptions:[String:Any]?=[:])
 	{
 		if nibName == nil {
-			_initViewFrame = viewFrame
+			_initViewFrame = viewFrame ?? CGRect.null
 			_initViewOptions = viewOptions
 		} else {
-			_initViewFrame = nil
+			_initViewFrame = CGRect.null
 			_initViewOptions = nil
 		}
 		
@@ -42,22 +42,15 @@ public class SCNViewController : UIViewController
 	}
 	
 	public required init?(coder aDecoder:NSCoder) {
-		_initViewFrame = nil
+		_initViewFrame = CGRect.null
 		_initViewOptions = nil
 		
 		super.init(coder: aDecoder)
 	}
 	
 	
-	private let _initViewFrame:CGRect?
-	private var initViewFrame:CGRect {
-		return _initViewFrame ?? CGRect.null
-	}
-	
+	private let _initViewFrame:CGRect
 	private let _initViewOptions:[String:Any]?
-	private var initViewOptions:[String:Any]? {
-		return _initViewOptions
-	}
 	
 	
 	public var scnView:SCNView {
@@ -77,7 +70,7 @@ public class SCNViewController : UIViewController
 		}
 		
 		self.view = {
-			let view = SCNView(frame: self.initViewFrame, options: self.initViewOptions)
+			let view = SCNView(frame: _initViewFrame, options: _initViewOptions)
 			if #available(iOS 9.0, tvOS 9.0, *) {
 				_ = view.audioEngine
 			}
