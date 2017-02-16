@@ -1,0 +1,6 @@
+framework module SCNViewController {
+	export *
+	
+	link framework "UIKit"
+	link framework "SceneKit"
+}
