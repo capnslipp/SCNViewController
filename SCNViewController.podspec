@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SCNViewController'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.summary = 'The Missing SCNViewController Class (a Swift µ-library)'
   s.description = "A Swift micro-library that provides a configurable/reusable SCNViewController class— a UIViewController subclass with a SceneKit SCNView."
   s.homepage = 'https://github.com/capnslipp/SCNViewController'
