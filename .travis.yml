@@ -1,0 +1,4 @@
+language: swift
+xcode_project: SCNViewController.xcodeproj
+xcode_scheme: SCNViewController
+osx_image: xcode9.2
