@@ -2,13 +2,40 @@
 // @author: Slipp Douglas Thompson
 // @license: Public Domain per The Unlicense.  See accompanying LICENSE file or <http://unlicense.org/>.
 
-import UIKit
 import SceneKit
 import class AVFoundation.AVAudioEngine
 
+#if os(macOS)
+	import AppKit
+	public typealias SCNNativeBaseViewController = NSViewController
+	//typealias SCNNativeButton = NSButton
+	//typealias SCNNativeStoryboardSegue = NSStoryboardSegue
+#else
+	import UIKit
+	public typealias SCNNativeBaseViewController = UIViewController
+	//typealias SCNNativeButton = UIButton
+	//typealias SCNNativeStoryboardSegue = UIStoryboardSegue
+#endif
 
 
-public class SCNViewController : UIViewController
+#if os(macOS)
+	@available(macOS 10.13, *)
+	extension NSNib.Name
+	{
+		convenience init?(_ rawValue:String?)
+		{
+			if let rawValue = rawValue {
+				self.init(rawValue)
+			} else {
+				return nil
+			}
+		}
+	}
+#endif
+
+
+
+public class SCNViewController : SCNNativeBaseViewController
 {
 	enum Error : Swift.Error {
 		case nibStoryboardViewIsNotAnSCNView
@@ -31,7 +58,15 @@ public class SCNViewController : UIViewController
 			_initViewOptions = nil
 		}
 		
-		super.init(nibName: nibName, bundle: nibBundle)
+		#if os(macOS)
+			if #available(macOS 10.13, *) {
+				super.init(nibName: NSNib.Name(nibName), bundle: nibBundle)
+			} else {
+				super.init(nibName: nibName, bundle: nibBundle)!
+			}
+		#else
+			super.init(nibName: nibName, bundle: nibBundle)
+		#endif
 	}
 	public convenience init(viewFrame:CGRect?, viewOptions:[String:Any]? = [:]) {
 		self.init(nibName: nil, bundle: nil, viewFrame: viewFrame, viewOptions: viewOptions)
@@ -71,7 +106,7 @@ public class SCNViewController : UIViewController
 		
 		self.view = {
 			let view = SCNView(frame: _initViewFrame, options: _initViewOptions)
-			if #available(iOS 9.0, tvOS 9.0, *), NSClassFromString("AVAudioEngine") != nil {
+			if #available(macOS 10.11, iOS 9.0, tvOS 9.0, *), NSClassFromString("AVAudioEngine") != nil {
 				_ = view.audioEngine
 			}
 			return view
@@ -85,21 +120,23 @@ public class SCNViewController : UIViewController
 		super.viewDidLoad()
 	}
 	
-	public override var shouldAutorotate:Bool { return true }
-	
-	public override var prefersStatusBarHidden:Bool { return true }
-	
-	public override var supportedInterfaceOrientations:UIInterfaceOrientationMask {
-		switch UIDevice.current.userInterfaceIdiom {
-			case .phone:
-				return .allButUpsideDown
-			default:
-				return .all
+	#if os(iOS)
+		public override var shouldAutorotate:Bool { return true }
+		
+		public override var prefersStatusBarHidden:Bool { return true }
+		
+		public override var supportedInterfaceOrientations:UIInterfaceOrientationMask {
+			switch UIDevice.current.userInterfaceIdiom {
+				case .phone:
+					return .allButUpsideDown
+				default:
+					return .all
+			}
 		}
-	}
-	
-	/// Release any cached data, images, etc that aren't in use.
-	public override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-	}
+		
+		/// Release any cached data, images, etc that aren't in use.
+		public override func didReceiveMemoryWarning() {
+			super.didReceiveMemoryWarning()
+		}
+	#endif
 }
