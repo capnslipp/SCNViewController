@@ -1,19 +1,15 @@
-// swift-tools-version:5.0
+// swift-tools-version:3.0
 import PackageDescription
 
 let package = Package(
 	name: "SCNViewController",
-	products: [
-		.library(name: "SCNViewController", targets: [ "SCNViewController" ]),
+	targets: [
+		Target(name: "SCNViewController", dependencies: []),
 	],
 	dependencies: [],
-	targets: [
-		.target(name: "SCNViewController", dependencies: [], path: "Sources/"),
-	],
 	swiftLanguageVersions: [
-		.version("3"),
-		.version("4"),
-		.version("4.2"),
-		.version("5"),
+		3,
+		4,
+		5,
 	]
 )
