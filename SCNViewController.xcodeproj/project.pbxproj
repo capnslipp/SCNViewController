@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA6A867622765A4B00EA62B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6A867522765A4B00EA62B4 /* UIKit.framework */; };
+		FA6A867722765A5200EA62B4 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6A867322765A3600EA62B4 /* SceneKit.framework */; };
 		OBJ_18 /* SCNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SCNViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA4814B01E55626200FC4BD4 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		FA6A867322765A3600EA62B4 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		FA6A867522765A4B00EA62B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		OBJ_12 /* SCNViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SCNViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* SCNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNViewController.swift; sourceTree = "<group>"; };
@@ -22,12 +25,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				FA6A867722765A5200EA62B4 /* SceneKit.framework in Frameworks */,
+				FA6A867622765A4B00EA62B4 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA6A867222765A3600EA62B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA6A867522765A4B00EA62B4 /* UIKit.framework */,
+				FA6A867322765A3600EA62B4 /* SceneKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -47,10 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
-				FA4814B01E55626200FC4BD4 /* module.modulemap */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
 				OBJ_11 /* Products */,
+				FA6A867222765A3600EA62B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +150,8 @@
 		OBJ_15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -144,7 +160,6 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SCNViewController.xcodeproj/SCNViewController_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MODULEMAP_FILE = module.modulemap;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.capnslipp.$(PRODUCT_NAME)";
@@ -157,6 +172,8 @@
 		OBJ_16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -165,7 +182,6 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SCNViewController.xcodeproj/SCNViewController_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MODULEMAP_FILE = module.modulemap;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.capnslipp.$(PRODUCT_NAME)";

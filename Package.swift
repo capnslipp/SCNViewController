@@ -2,5 +2,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "SCNViewController"
+	name: "SCNViewController",
+	products: [
+		.library(name: "SCNViewController", targets: [ "SCNViewController" ]),
+	],
+	dependencies: [],
+	targets: [
+		.target(name: "SCNViewController", dependencies: [], path: "Sources/"),
+	],
+	swiftLanguageVersions: [
+		.version("3"),
+		.version("4"),
+		.version("4.2"),
+		.version("5"),
+	]
 )
