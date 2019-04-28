@@ -53,10 +53,10 @@ public class SCNViewController : UIViewController
 	private let _initViewOptions:[String:Any]?
 	
 	
-	public var scnView:SCNView {
+	@objc public var scnView:SCNView {
 		return self.view as! SCNView
 	}
-	public var scene:SCNScene? {
+	@objc public var scene:SCNScene? {
 		return self.scnView.scene
 	}
 	
