@@ -85,18 +85,20 @@ public class SCNViewController : UIViewController
 		super.viewDidLoad()
 	}
 	
-	public override var shouldAutorotate:Bool { return true }
-	
-	public override var prefersStatusBarHidden:Bool { return true }
-	
-	public override var supportedInterfaceOrientations:UIInterfaceOrientationMask {
-		switch UIDevice.current.userInterfaceIdiom {
-			case .phone:
-				return .allButUpsideDown
-			default:
-				return .all
+	#if !os(tvOS)
+		public override var shouldAutorotate:Bool { return true }
+		
+		public override var prefersStatusBarHidden:Bool { return true }
+		
+		public override var supportedInterfaceOrientations:UIInterfaceOrientationMask {
+			switch UIDevice.current.userInterfaceIdiom {
+				case .phone:
+					return .allButUpsideDown
+				default:
+					return .all
+			}
 		}
-	}
+	#endif // !tvOS
 	
 	/// Release any cached data, images, etc that aren't in use.
 	public override func didReceiveMemoryWarning() {
