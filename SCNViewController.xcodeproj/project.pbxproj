@@ -11,6 +11,8 @@
 		FA6A867722765A5200EA62B4 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6A867322765A3600EA62B4 /* SceneKit.framework */; };
 		FAA5DB9A295E17D60004886A /* SCNViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DB99295E17D60004886A /* SCNViewControllerTests.swift */; };
 		FAA5DB9B295E17D60004886A /* SCNViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SCNViewController.framework */; platformFilters = (ios, tvos, ); };
+		FAA5DBA3295E29240004886A /* ViewOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DBA1295E29240004886A /* ViewOption.swift */; };
+		FAA5DBA4295E29240004886A /* SCNViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DBA2295E29240004886A /* SCNViewExtensions.swift */; };
 		OBJ_18 /* SCNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SCNViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		FA6A867522765A4B00EA62B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FAA5DB97295E17D60004886A /* SCNViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCNViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA5DB99295E17D60004886A /* SCNViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNViewControllerTests.swift; sourceTree = "<group>"; };
+		FAA5DBA1295E29240004886A /* ViewOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOption.swift; sourceTree = "<group>"; };
+		FAA5DBA2295E29240004886A /* SCNViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNViewExtensions.swift; sourceTree = "<group>"; };
 		OBJ_12 /* SCNViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SCNViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* SCNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* SCNViewController.swift */,
+				FAA5DBA2295E29240004886A /* SCNViewExtensions.swift */,
+				FAA5DBA1295E29240004886A /* ViewOption.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -196,7 +202,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				FAA5DBA4295E29240004886A /* SCNViewExtensions.swift in Sources */,
 				OBJ_18 /* SCNViewController.swift in Sources */,
+				FAA5DBA3295E29240004886A /* ViewOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

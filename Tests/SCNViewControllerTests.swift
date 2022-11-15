@@ -28,7 +28,8 @@ final class SCNViewControllerTests: XCTestCase
 				nibName: nil,
 				viewFrame: CGRect(x: 0, y: 0, width: 1024, height: 768),
 				viewOptions: [
-					SCNView.Option.preferredRenderingAPI.rawValue : NSNumber(value: SCNRenderingAPI.openGLES2.rawValue),
+					.preferredRenderingAPI(.openGLES2),
+					.preferLowPowerDevice(true)
 				]
 			)
 			
@@ -39,7 +40,7 @@ final class SCNViewControllerTests: XCTestCase
 				
 				XCTAssertTrue(view is SCNView)
 				if let scnView = view as? SCNView {
-					XCTAssertEqual(scnView.renderingAPI, SCNRenderingAPI.openGLES2)
+					XCTAssertEqual(scnView.renderingAPI, .openGLES2)
 					
 				}
 			}
