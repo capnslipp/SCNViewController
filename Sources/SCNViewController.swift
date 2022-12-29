@@ -15,42 +15,49 @@ public class SCNViewController : UIViewController
 	}
 	
 	
-	/// Unfortunately, SCNView's API hasn't yet been fully updated for Swift, so if you use `viewOptions`s they need to be specified similar to the following:
+	/// The `viewFrame` and `viewOptions` arguments are ignored if a `nibName` is specified (values come from the nib's SCNView object).
+	public convenience init(nibName:String?, bundle nibBundle:Bundle?=nil, viewFrame:CGRect?, viewOptions:[ViewOption]?=nil) {
+		self.init(nibName: nibName, bundle: nibBundle, viewFrame: viewFrame, viewOptions: viewOptions?.asObjCStyleOptions)
+	}
+	
+	/// Uses SCNView-API-like viewOptions (Obj-C-style), like the following:
 	///		viewOptions: [
 	///			SCNView.Option.preferredRenderingAPI.rawValue: NSNumber(value: SCNRenderingAPI.metal.rawValue),
 	///			SCNView.Option.preferredDevice.rawValue: MTLCreateSystemDefaultDevice()!,
 	///			SCNView.Option.preferLowPowerDevice.rawValue: NSNumber(value: true)
 	///		]
-	public required init(nibName:String?, bundle nibBundle:Bundle?=nil, viewFrame:CGRect?, viewOptions:[String:Any]?=[:])
+	/// The `viewFrame` and `viewOptions` arguments are ignored if a `nibName` is specified (values come from the nib).
+	public required init(nibName:String?, bundle nibBundle:Bundle?=nil, viewFrame:CGRect?, viewOptions:[SCNView.Option.RawValue:Any]?=nil)
 	{
 		if nibName == nil {
 			_initViewFrame = viewFrame ?? CGRect.null
 			_initViewOptions = viewOptions
 		} else {
 			_initViewFrame = CGRect.null
-			_initViewOptions = nil
+			_initViewOptions = [:]
 		}
 		
 		super.init(nibName: nibName, bundle: nibBundle)
 	}
-	public convenience init(viewFrame:CGRect?, viewOptions:[String:Any]? = [:]) {
+	
+	public convenience init(viewFrame:CGRect?, viewOptions:[ViewOption] = []) {
 		self.init(nibName: nil, bundle: nil, viewFrame: viewFrame, viewOptions: viewOptions)
 	}
 	
 	public convenience override init(nibName:String?, bundle nibBundle:Bundle?=nil) {
-		self.init(nibName: nibName, bundle: nibBundle, viewFrame: nil, viewOptions: nil)
+		self.init(nibName: nibName, bundle: nibBundle, viewFrame: nil, viewOptions: [])
 	}
 	
 	public required init?(coder aDecoder:NSCoder) {
 		_initViewFrame = CGRect.null
-		_initViewOptions = nil
+		_initViewOptions = [:]
 		
 		super.init(coder: aDecoder)
 	}
 	
 	
 	private let _initViewFrame:CGRect
-	private let _initViewOptions:[String:Any]?
+	private let _initViewOptions:[SCNView.Option.RawValue:Any]?
 	
 	
 	@objc public var scnView:SCNView {
@@ -70,7 +77,7 @@ public class SCNViewController : UIViewController
 		}
 		
 		self.view = {
-			let view = SCNView(frame: _initViewFrame, options: _initViewOptions)
+			let view =  SCNView(frame: _initViewFrame, options: _initViewOptions)
 			if #available(iOS 9.0, tvOS 9.0, *), NSClassFromString("AVAudioEngine") != nil {
 				_ = view.audioEngine
 			}
