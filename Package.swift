@@ -9,6 +9,7 @@ let package = Package(
 	dependencies: [],
 	targets: [
 		.target(name: "SCNViewController", dependencies: [], path: "Sources/"),
+		.testTarget(name: "SCNViewControllerTests", dependencies: ["SCNViewController"], path: "Tests/"),
 	],
 	swiftLanguageVersions: [
 		.version("3"),
