@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
@@ -6,7 +6,6 @@ let package = Package(
 	platforms: [
 		.iOS(.v9),
 		.tvOS(.v9),
-		.macCatalyst(.v13),
 	],
 	products: [
 		.library(name: "SCNViewController", targets: [ "SCNViewController" ]),
